@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, Blog of Pxzy98">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="keywords" content="EFI Edit / Boot Fix With Windows, Blog of Pxzy98">
+    <meta name="description" content="EFI Partition RecoveryAs I was trying to reinstall the windows system to recover some problems with hyperv environment, ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | Blog of Pxzy98</title>
+    <title>EFI Edit / Boot Fix With Windows | Blog of Pxzy98</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -295,7 +295,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">EFI Edit / Boot Fix With Windows</h1>
                 </div>
             </div>
         </div>
@@ -317,12 +317,37 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/PC-Troubleshoot/">
+                                <span class="chip bg-color">PC Troubleshoot</span>
+                            </a>
+                        
+                            <a href="/tags/Windows/">
+                                <span class="chip bg-color">Windows</span>
+                            </a>
+                        
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Troubleshoot/" class="post-category">
+                                Troubleshoot
+                            </a>
+                        
+                            <a href="/categories/Troubleshoot/system-troubleshoot/" class="post-category">
+                                system troubleshoot
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -331,7 +356,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2023-07-18
+                    2023-07-20
                 </div>
                 
 
@@ -340,7 +365,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    81
+                    478
                 </div>
                 
 
@@ -360,23 +385,66 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
+                <h2 id="EFI-Partition-Recovery"><a href="#EFI-Partition-Recovery" class="headerlink" title="EFI Partition Recovery"></a>EFI Partition Recovery</h2><p>As I was trying to reinstall the windows system to recover some problems with hyperv environment, the “correct” efi partition was accidentally removed and the computer was not able to boot into new installed system.</p>
+<hr>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>For windows, if you can still access to the windows boot loader but not the right one. You can get into Windows Recovery Environment by booting the machine while keep pressing F11. (Or hold shift while restarting the system which is not suitable for this case) Then you can select “Troubleshoot” at the menu with advanced option at the submenu. </p>
+<p>Firstly, you may want to try a automatic repair. There would be a “Start up setting” over there and follow the instructions to repair it. </p>
+<p>If it doesnt work, you may need some command line work to bring your pc back. Follow the same instruction with previous steps until you reaches the “Advance Options”. This time selects “Command Prompt” instead. </p>
+<pre class="language-batch" data-language="batch"><code class="language-batch"><span class="token command"><span class="token keyword">diskpart</span></span>
+<span class="token command"><span class="token keyword">list</span> disk</span></code></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="language-none"><code class="language-none">bash$ hexo server
-bash$ sadasd
-bash$ asd 
-bash$ asdada
-bash$ asdad</code></pre>
+<p><img src="/pics/2023-07-20/list_disk.png" alt="list_of_disks"><br>The result would be similar to this pic above. For me, Disk 0 is the system drive, you need to determine which one is your’s while you are repairing.</p>
+<pre class="language-batch" data-language="batch"><code class="language-batch"><span class="token command"><span class="token keyword">select</span> disk <span class="token number">0</span></span>
+<span class="token command"><span class="token keyword">list</span> vol</span></code></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo generate</code></pre>
+<p><img src="/pics/2023-07-20/list_vol.png" alt="list_of_Volumes"></p>
+<p>Things will be different here.</p>
+<p>If you can find a partition with the FAT32 filesystem and a small size, like Volume 5 here, it should be an EFI partition.</p>
+<pre class="language-batch" data-language="batch"><code class="language-batch"><span class="token command"><span class="token keyword">select</span> vol <span class="token number">5</span></span>
+<span class="token command"><span class="token keyword">Assign</span> letter=X:</span>
+<span class="token command"><span class="token keyword">exit</span></span></code></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo deploy</code></pre>
+<p>If you can’t, select the volume with your system, and do following instructions.</p>
+<pre class="language-batch" data-language="batch"><code class="language-batch"><span class="token command"><span class="token keyword">select</span> vol </span>
+<span class="token command"><span class="token keyword">shrink</span> desired=<span class="token number">500</span></span></code></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>Right now, the space for new EFI partition is reserved. And we need to acutally create a new one now.</p>
+<pre class="language-batch" data-language="batch"><code class="language-batch"><span class="token command"><span class="token keyword">select</span> disk <span class="token number">0</span></span>
+<span class="token command"><span class="token keyword">create</span> partition primary size=<span class="token number">500</span></span>
+<span class="token command"><span class="token keyword">Assign</span> letter=X:</span>
+<span class="token command"><span class="token keyword">exit</span></span></code></pre>
+
+<p><strong>For both situation, you can choose any other letter which are not using in your system to replace X here.</strong></p>
+<pre class="language-batch" data-language="batch"><code class="language-batch"><span class="token command"><span class="token keyword">X</span>:</span>
+<span class="token command"><span class="token keyword">bcdboot</span> C:\windows <span class="token parameter attr-name">/s</span> X: <span class="token parameter attr-name">/f</span> UEFI</span>
+<span class="token command"><span class="token keyword">exit</span></span></code></pre>
+
+<p>You can try restarting your PC, and the problem should be solved.</p>
+<p>If the drive labeled ‘X’ still exists, you can access “Disk Management” by searching for it. Once it is opened, right-click on the ‘X’ partition, select “Change Drive Letter and Paths,” and then click on “Remove.” That should take care of it.</p>
+<hr>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>If you got a linux system installed on the machine as well.</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> os-prober
+$ <span class="token function">sudo</span> <span class="token function">update-grub</span></code></pre>
+<p>This may solve the problem by adding windows to Linux boot system.</p>
+<p>If it doesnt work, you may try following.</p>
+<p>Firstly, check which partition Windows locates</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> blkid /dev/sda1</code></pre>
+
+<p>Replace it with sda1 here. It would show UUID over here after it finished.</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">nano</span> /etc/grub.d/40_custom</code></pre>
+
+<p>Add following to the end of the file and save it.</p>
+<pre class="language-none"><code class="language-none">menuentry "Windows 10" --class windows --class os {
+   insmod ntfs
+   search --no-floppy --set=root --fs-uuid $your_uuid_here$
+   ntldr /bootmgr
+}</code></pre>
+
+<p>Update the grub and restart, problem should be solved</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">update-grub</span>
+$ <span class="token function">sudo</span> <span class="token function">reboot</span></code></pre>
+
+
 
                 
             </div>
@@ -390,7 +458,19 @@ bash$ asdad</code></pre>
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="/tags/PC-Troubleshoot/">
+                                    <span class="chip bg-color">PC Troubleshoot</span>
+                                </a>
+                            
+                                <a href="/tags/Windows/">
+                                    <span class="chip bg-color">Windows</span>
+                                </a>
+                            
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -431,17 +511,18 @@ bash$ asdad</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2023/07/18/test/">
+                <a href="/2023/07/20/EFI-Edit-Boot-Fix/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="test">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="EFI Edit / Boot Fix With Windows">
                         
-                        <span class="card-title">test</span>
+                        <span class="card-title">EFI Edit / Boot Fix With Windows</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -451,16 +532,41 @@ bash$ asdad</code></pre>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-07-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-20
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Zhenyan Xing
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Troubleshoot/" class="post-category">
+                                    Troubleshoot
+                                </a>
+                            
+                            <a href="/categories/Troubleshoot/system-troubleshoot/" class="post-category">
+                                    system troubleshoot
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PC-Troubleshoot/">
+                        <span class="chip bg-color">PC Troubleshoot</span>
+                    </a>
+                    
+                    <a href="/tags/Windows/">
+                        <span class="chip bg-color">Windows</span>
+                    </a>
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -472,13 +578,13 @@ bash$ asdad</code></pre>
                 Current&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2023/07/18/hello-world/">
+                <a href="/2023/07/20/EFI-Edit-Boot-Fix/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="EFI Edit / Boot Fix With Windows">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">EFI Edit / Boot Fix With Windows</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -489,17 +595,41 @@ bash$ asdad</code></pre>
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-20
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Zhenyan Xing
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Troubleshoot/" class="post-category">
+                                    Troubleshoot
+                                </a>
+                            
+                            <a href="/categories/Troubleshoot/system-troubleshoot/" class="post-category">
+                                    system troubleshoot
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PC-Troubleshoot/">
+                        <span class="chip bg-color">PC Troubleshoot</span>
+                    </a>
+                    
+                    <a href="/tags/Windows/">
+                        <span class="chip bg-color">Windows</span>
+                    </a>
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
